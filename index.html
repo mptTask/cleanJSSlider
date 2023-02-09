@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            background-color: black;
+            margin: 0;
+            align-items: center;
+        }
+        .shudo-img{
+            left: 0;
+            position: absolute;
+            display: flex;
+        }
+        .shudo{
+            position: relative;
+            width: 250px;
+            height: 250px;
+            background-color: wheat;
+            display: flex;
+            overflow: hidden;
+            left: 0;
+        }
+        p {
+            color: white;
+        }
+        main{
+            width: 500px;
+            height: 370px;
+            background-color: cadetblue;
+        }
+        .slider__title{
+            text-align: center;
+        }
+        .slider__active{
+            display: flex;
+            justify-content: space-around;
+        }
+        .slider__button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .slider__button > button {
+            appearance: none;
+            border: 0;
+            border-radius: 5px;
+            background: #4676D7;
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 16px;
+        }
+    </style>
+    
+    <main>
+        <h1 class="slider__title">Самый красивый слайдер</h1>
+        <div class="slider__active">
+            <div class="slider__button">
+                <button class="vpered">Вперед</button>
+            </div>
+            <div class="shudo">
+                <div class="shudo-img">
+                    <img src="1.png" alt="">
+                    <img src="2.png" alt="">
+                    <img src="1.png" alt="">
+                    <img src="2.png" alt="">
+                    <img src="1.png" alt="">
+                    <img src="2.png" alt="">
+                </div>
+            </div>
+            <div class="slider__button">
+                <button class="nazad">Назад</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        let offset = 0;
+        const liderLine = document.querySelector('.shudo-img');
+
+        const myFirstEvent = document.querySelector('.vpered');
+        const negitiveChel = document.querySelector('.nazad');
+        
+        myFirstEvent.addEventListener('click', function() {
+            effect_negative(true);
+        })
+
+        negitiveChel.addEventListener('click', function() {
+            effect_negative(false);
+        })
+
+        const effect_negative = (types) => {
+            console.log(types)
+            offset = types ? offset + 250 : offset - 250
+            if (offset < -1250) {
+                offset = 0
+            }
+            if (offset > 0) {
+                offset = -1250
+            }
+            liderLine.style.marginLeft = offset + 'px';
+            console.log("state", liderLine)
+        }
+    </script>
+</body>
+</html>
